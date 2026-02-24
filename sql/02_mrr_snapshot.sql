@@ -6,7 +6,7 @@
 SELECT
   COUNT(*) AS active_subscriptions,
   SUM(CASE WHEN mrr_amount = 0 THEN 1 ELSE 0 END) AS zero_mrr_subscriptions,
-  SUM(CASE WHEN mrr_amount = 0 THEN 1 ELSE 0 END) / COUNT(*) AS zero_mrr_share
+  CAST(SUM(CASE WHEN mrr_amount = 0 THEN 1 ELSE 0 END) AS FLOAT)/COUNT(*) AS zero_mrr_share
 FROM active_subscriptions;
 
 -- 2) Company-level KPIs (USD)
